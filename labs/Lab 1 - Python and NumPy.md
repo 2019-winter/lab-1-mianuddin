@@ -14,7 +14,7 @@ jupyter:
 ---
 
 # Name(s)
-**PUT YOUR FULL NAME(S) HERE**
+Mian Uddin
 
 
 **Instructions:** This is an individual assignment, but you may discuss your code with your neighbors.
@@ -36,7 +36,7 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
-**YOUR ANSWER HERE**
+* My DATA 301 teacher taught me everything
 
 
 ## Exercises 1-7
@@ -46,46 +46,81 @@ For the following exercises please read the Python appendix in the Marsland text
 ## Exercise 1
 
 ```python
-# YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+import numpy as np
+```
+
+```python
+a = np.full((6, 4), 2)
+a
 ```
 
 ## Exercise 2
 
 ```python
-# YOUR SOLUTION HERE
-a=2000
+b = np.eye(6, 4) * 2 + np.ones((6, 4))
+b
 ```
 
 ## Exercise 3
 
 ```python
-# YOUR SOLUTION HERE
+a * b
 ```
+
+`np.dot(a, b)` does not work because the columns of `a` need to match the rows of `b` to compute the dot product.
+
 
 ## Exercise 4
 
 ```python
-# YOUR SOLUTION HERE
+np.dot(a.transpose(), b)
 ```
+
+```python
+np.dot(a, b.transpose())
+```
+
+The outputs are different because the order matters with dot product and different dimensions in a different order will result in a different dimension for the output.
+
 
 ## Exercise 5
 
 ```python
-# YOUR SOLUTION HERE
+def out():
+    print("lmao")
+
+out()
 ```
 
 ## Exercise 6
 
 ```python
-# YOUR SOLUTION HERE
+def six():
+    for i in range(0, 3):
+        a = np.random.rand(1, 9)
+        print("{}, {}, etc.".format(np.sum(a), np.mean(a)))
+
+six()
 ```
 
 ## Exercise 7
 
 ```python
-# YOUR SOLUTION HERE
+def count_ones(arr):
+    count = 0
+    for a in arr:
+        for b in a:
+            if b == 1:
+                count += 1
+    return count
+```
+
+```python
+count_ones(b)
+```
+
+```python
+len(np.where(b == 1)[0])
 ```
 
 ## Excercises 8-???
@@ -96,28 +131,32 @@ While the Marsland book avoids using another popular package called Pandas, we w
 Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a NumPy array.
 
 ```python
-# YOUR SOLUTION HERE
+import pandas as pd
+```
+
+```python
+a_df = pd.DataFrame(a)
 ```
 
 ## Exercise 9
 Repeat exercise A.2 using a DataFrame instead.
 
 ```python
-# YOUR SOLUTION HERE
+b_df = pd.DataFrame(b)
 ```
 
 ## Exercise 10
 Repeat exercise A.3 using DataFrames instead.
 
 ```python
-# YOUR SOLUTION HERE
+a_df * b_df
 ```
 
 ## Exercise 11
 Repeat exercise A.7 using a dataframe.
 
 ```python
-# YOUR SOLUTION HERE
+b_df.apply(pd.value_counts).loc[1.0].sum()
 ```
 
 ## Exercises 12-14
@@ -137,24 +176,27 @@ Notice how we have nice headers and mixed datatypes? That is one of the reasons 
 How do you select the ``name`` column without using .iloc?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df["name"]
 ```
 
 ## Exercise 13
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-## YOUR SOLUTION HERE
-titanic_df.set_index('sex',inplace=True)
+titanic_df.set_index('sex', inplace=True)
+```
+
+```python
+titanic_df[titanic_df.index == "female"]
+```
+
+```python
+titanic_df[titanic_df.index == "female"].shape[0]
 ```
 
 ## Exercise 14
 How do you reset the index?
 
 ```python
-## YOUR SOLUTION HERE
-```
-
-```python
-
+titanic_df.reset_index()
 ```
